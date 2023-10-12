@@ -18,19 +18,17 @@ let jsResolutionOrder = ['', '.js', '.cjs', '.mjs', '.ts', '.cts', '.mts', '.jsx
 let tsResolutionOrder = ['', '.ts', '.cts', '.mts', '.tsx', '.js', '.cjs', '.mjs', '.jsx']
 
 function resolveWithExtension(file, extensions) {
-  // Try to find `./a.ts`, `./a.ts`, ... from `./a`
   for (let ext of extensions) {
-    let full = `${file}${ext}`
-    if (fs.existsSync(full) && fs.statSync(full).isFile()) {
-      return full
+    // Try to find `./a.ts`, `./a.ts`, ... from `./a`
+    let nameAsFile = `${file}${ext}`
+    if (fs.existsSync(nameAsFile) && fs.statSync(nameAsFile).isFile()) {
+      return nameAsFile
     }
-  }
 
-  // Try to find `./a/index.js` from `./a`
-  for (let ext of extensions) {
-    let full = `${file}/index${ext}`
-    if (fs.existsSync(full)) {
-      return full
+    // Try to find `./a/index.js` from `./a`
+    let nameAsDir = `${file}/index${ext}`
+    if (fs.existsSync(nameAsDir)) {
+      return nameAsDir
     }
   }
 
