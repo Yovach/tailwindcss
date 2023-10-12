@@ -12,7 +12,7 @@ export function parseSourceMaps(result) {
         let css = result.toString()
         let sourceMappingURL = css.match(/\/\*# sourceMappingURL=(.*) \*\//)?.[1]
         let raw = sourceMappingURL
-          ? Buffer.from(sourceMappingURL.split(',')[1], 'base64').toString()
+          ? Buffer.from(sourceMappingURL.split(',', 2)[1], 'base64').toString()
           : null
         return JSON.parse(raw ?? '{}')
       })()

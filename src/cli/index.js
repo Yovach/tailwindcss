@@ -145,7 +145,7 @@ let args = (() => {
       let flag = result['_'][i]
       if (!flag.startsWith('-')) continue
 
-      let [flagName, flagValue] = flag.split('=')
+      let [flagName, flagValue] = flag.split('=', 2)
       let handler = flags[flagName]
 
       // Resolve flagName & handler

@@ -41,7 +41,7 @@ export function resolveDebug(debug) {
     return true
   }
 
-  let debuggers = debug.split(',').map((d) => d.split(':')[0])
+  let debuggers = debug.split(',').map((d) => d.split(':', 1)[0])
 
   // Ignoring tailwindcss
   if (debuggers.includes('-tailwindcss')) {
